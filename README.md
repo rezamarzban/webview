@@ -22,18 +22,6 @@ To create an app that shows the content of a remote website:
    
    mWebView.loadUrl("https://example.com");
 
-### Using a local source 
-
-To create a local HTML5 android app
-
-1. uncommented line **27** in `MainActivity.java` by default:
-
-	```java
-	mWebView.loadUrl("file:///android_asset/index.html");
-	```
-
-2. put all your files (including your `index.html`) in the `assets` directory
-
 ### Build with Colab
 
 Use `Build.ipynb` or Colab:
