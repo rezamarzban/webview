@@ -58,3 +58,5 @@ To download built android app:
 from google.colab import files
 files.download('/content/webview/app/build/outputs/apk/debug/app-debug.apk')
 ```
+
+To build with custom assets use `BuildCustomAssets.ipynb`.
