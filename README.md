@@ -31,3 +31,30 @@ To create a local HTML5 android app
 	```
 
 2. put all your files (including your `index.html`) in the `assets` directory
+
+##* Build
+
+Use `Build.ipynb` or Colab:
+
+```
+%%shell
+set -x
+wget -q --show-progress https://dl.google.com/android/repository/commandlinetools-linux-9123335_latest.zip
+mkdir -p sdk
+unzip -o commandlinetools-linux-9123335_latest.zip -d sdk
+# force line-buffered output so Colab shows live-like output
+stdbuf -oL -eL yes | stdbuf -oL -eL ./sdk/cmdline-tools/bin/sdkmanager --sdk_root=/content/sdk "tools"
+git clone https://github.com/rezamarzban/webview/
+chmod -c 755 /content/webview/gradlew
+export ANDROID_HOME=/content/sdk
+cd /content/webview
+# make Gradle output plain and line-buffered for Colab
+stdbuf -oL -eL ./gradlew assembleDebug --console=plain -Dorg.gradle.console=plain
+```
+
+To download built android app:
+
+```
+from google.colab import files
+files.download('/content/webview/app/build/outputs/apk/debug/app-debug.apk')
+```
