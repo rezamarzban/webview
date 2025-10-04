@@ -2,23 +2,45 @@ package com.example.app;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-class MyWebViewClient extends WebViewClient {
+import androidx.webkit.WebViewAssetLoader;
+import androidx.webkit.WebViewClientCompat;
+
+class MyWebViewClient extends WebViewClientCompat {
+    private final WebViewAssetLoader mAssetLoader;
+
+    public MyWebViewClient(WebViewAssetLoader assetLoader) {
+        mAssetLoader = assetLoader;
+    }
 
     @Override
-    public boolean shouldOverrideUrlLoading(WebView view, String url) {
-        String hostname;
+    public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
+        return mAssetLoader.shouldInterceptRequest(request.getUrl());
+    }
 
-        // YOUR HOSTNAME
-        hostname = "example.com";
+    @Override
+    public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
+        return mAssetLoader.shouldInterceptRequest(Uri.parse(url));
+    }
 
-        Uri uri = Uri.parse(url);
-        if (url.startsWith("file:") || uri.getHost() != null && uri.getHost().endsWith(hostname)) {
-            return false;
+    @Override
+    public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+        Uri uri = request.getUrl();
+        String url = uri.toString();
+
+        // Virtual hostname for asset loader (local content)
+        String hostname = "appassets.androidplatform.net";
+
+        if (url.startsWith("file:") || (uri.getHost() != null && uri.getHost().endsWith(hostname))) {
+            return false;  // Load local content in WebView
         }
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+
+        // Open external URLs in system browser
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         view.getContext().startActivity(intent);
         return true;
     }
