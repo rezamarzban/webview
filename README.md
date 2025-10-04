@@ -32,7 +32,7 @@ To create a local HTML5 android app
 
 2. put all your files (including your `index.html`) in the `assets` directory
 
-##* Build
+### Build with Colab
 
 Use `Build.ipynb` or Colab:
 
