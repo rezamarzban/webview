@@ -4,7 +4,7 @@ This is a template project for Android Studio that allows you to create an Andro
 
 ### Getting Started
 
-1. [Download](https://github.com/slymax/webview/archive/master.zip) or clone this repository and import it into Android Studio.
+1. [Download](https://github.com/rezamarzban/webview/archive/master.zip) or clone this repository and import it into Android Studio.
 2. Ensure Android SDK 35 is installed via **Tools > SDK Manager**.
 3. Sync the project (**File > Sync Project with Gradle Files**).
 4. For local content: Place your `index.html` and assets (e.g., `module.wasm`, JS files) in `app/src/main/assets/`.
