@@ -39,12 +39,15 @@ Use `Build.ipynb` or Colab:
 ```
 %%shell
 set -x
+apt update
+apt install openjdk-17-jdk -y
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 wget -q --show-progress https://dl.google.com/android/repository/commandlinetools-linux-9123335_latest.zip
 mkdir -p sdk
 unzip -o commandlinetools-linux-9123335_latest.zip -d sdk
 # force line-buffered output so Colab shows live-like output
 stdbuf -oL -eL yes | stdbuf -oL -eL ./sdk/cmdline-tools/bin/sdkmanager --sdk_root=/content/sdk "tools"
-git clone https://github.com/rezamarzban/webview/
+git clone https://github.com/rezamarzban/webview.git
 chmod -c 755 /content/webview/gradlew
 export ANDROID_HOME=/content/sdk
 cd /content/webview
