@@ -26,9 +26,8 @@ public class MainActivity extends Activity {
         // LOCAL RESOURCE
         mWebView.loadUrl("file:///android_asset/index.html");
 
-        mWebView.settings.javaScriptEnabled = true;
-        mWebView.settings.allowFileAccess = true;
-        
+        mWebView.getSettings().setJavaScriptEnabled(true);
+        mWebView.getSettings().setAllowFileAccess(true);
     }
 
     @Override
