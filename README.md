@@ -1,24 +1,26 @@
-This is a template project for Android Studio that allows you to create an android webview application in minutes. You can use it to create a simple app for your website or as a starting point for your HTML5 based android app.
+# Android WebView Template
 
-### Getting started
+This is a template project for Android Studio that allows you to create an Android WebView application in minutes. You can use it to create a simple app for your website or as a starting point for your HTML5-based Android app, including support for WebAssembly (WASM) modules in local assets.
 
-[Download](https://github.com/slymax/webview/archive/master.zip) or clone this repository and import it into Android Studio.
+### Getting Started
 
-### Using a remote source
+1. [Download](https://github.com/slymax/webview/archive/master.zip) or clone this repository and import it into Android Studio.
+2. Ensure Android SDK 35 is installed via **Tools > SDK Manager**.
+3. Sync the project (**File > Sync Project with Gradle Files**).
+4. For local content: Place your `index.html` and assets (e.g., `module.wasm`, JS files) in `app/src/main/assets/`.
+5. Build and run: `./gradlew assembleDebug` or via Android Studio.
 
-To create an app that shows the content of a remote website
+**Note:** This template requires JDK 17+. If using Google Colab or similar, install OpenJDK 17 and set `org.gradle.java.home` in `gradle.properties`.
 
-1. comment line **27** and uncomment line **24** in `MainActivity.java` and replace `https://example.com` with your url
+### Using a Remote Source
 
-	```java
-	mWebView.loadUrl("https://example.com");
-	```
+To create an app that shows the content of a remote website:
 
-2. open the `MyWebViewClient.java` file and replace `example.com` on line **15** with your hostname
-
-	```java
-	hostname = "example.com";
-	```
+1. In `MainActivity.java`, comment out line ~40 (local load) and uncomment/adjust line ~42:
+   ```java
+   // mWebView.loadUrl("https://appassets.androidplatform.net/assets/index.html");
+   
+   mWebView.loadUrl("https://example.com");
 
 ### Using a local source 
 
